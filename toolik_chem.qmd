@@ -1,0 +1,44 @@
+---
+title: "eds221-day3-eod-part3"
+author: "mish"
+format: html
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+# 2
+# Missing values are stored as periods
+```
+
+```{r}
+library(tidyverse)
+library(here)
+library(janitor)
+```
+
+```{r}
+toolik_biochem <- read.csv(here::here("data","2011_Kling_Akchem.csv"), na = c(".")) %>% clean_names()
+```
+
+```{r}
+Inlet_site <- dplyr::filter(toolik_biochem, site == "Toolik Inlet" )
+view(Inlet_site)
+inlet_biochem <- dplyr::select(Inlet_site, "p_h","doc_u_m","tdn_u_m")
+view(inlet_biochem)
+class(inlet_biochem$p_h)
+```
+
+```{r}
+# find the means!
+apply(X = inlet_biochem, MARGIN = 2, FUN = mean, na.rm = TRUE)
+
+inlet_biochem %>% summarise(across(where(is.numeric), mean, na.rm = TRUE))
+
+map(.x = inlet_biochem, .f = mean, na.rm = TRUE)
+```
+
+```{r}
+tapply(inlet_biochem$p_h, inlet_biochem$doc_u_m, inlet_biochem$tdn_u_m, mean, na.rm + TRUE)
+```
+

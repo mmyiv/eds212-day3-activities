@@ -1,0 +1,69 @@
+---
+title: "conditional_loops"
+author: "mish"
+format: html
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+# Task 1
+
+pm2_5 <- 48
+
+if(pm2_5 < 100) {
+  print("Low to Moderate Risk")
+} else if (100 <= pm2_5 & pm2_5 < 150) {
+  print("Unhealthy for Sensitive Groups")
+} else if (pm2_5 >= 150)
+  print("Health Risk Present")
+```
+
+```{r}
+# Task 2
+
+library(stringr)
+
+species = "blue whale"
+
+if(str_detect(species, pattern = "whale")) {
+  print("You found a whale!!!")
+}
+```
+
+```{r}
+# Task 3
+## can alsp change what is in print to base_burrito + 3 or 3.25 for chicken and steak
+base_burrito <- 6.50
+main_ingredient <- "veggie"
+
+
+if(main_ingredient == "veggie") {
+  print(6.50)
+} else if (main_ingredient == "chicken") {
+  print(9.50)
+} else if (main_ingredient == "steak") {
+  print(9.75)
+}
+```
+
+```{r}
+# Task 4
+fish_species <- c("goldfish", "tetra", "guppy", "mollie")
+fish_count <- c(8, 10, 12, 23)
+
+for(i in seq_along(fish_count)) {
+  fish_prop = fish_count[i] / sum(fish_count)
+  print(fish_prop)
+}
+```
+
+```{r}
+# Task 5
+month_names <- c("January", "February","March","April", "May", "June", "July", "August", "September","October", "November", "December") 
+
+ for(i in seq_along(month_names)) {
+   print(paste(month_names[i], "is month", i)) 
+ }
+```
+
